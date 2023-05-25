@@ -1,0 +1,28 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] name, int[] yearning, String[][] photo) {
+        Map<String, Integer> nameIndexMap = createNameIndexMap(name);
+        int[] answer = new int[photo.length];
+        
+        for (int i = 0; i < photo.length; i++) {
+            for (int j = 0; j < photo[i].length; j++) {
+                String person = photo[i][j];
+                if (nameIndexMap.containsKey(person)) {
+                    int index = nameIndexMap.get(person);
+                    answer[i] += yearning[index];
+                }
+            }
+        }
+        
+        return answer;
+    }
+    
+    private Map<String, Integer> createNameIndexMap(String[] name) {
+        Map<String, Integer> nameIndexMap = new HashMap<>();
+        for (int i = 0; i < name.length; i++) {
+            nameIndexMap.put(name[i], i);
+        }
+        return nameIndexMap;
+    }
+}
