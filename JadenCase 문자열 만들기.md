@@ -1,3 +1,4 @@
+```java
 
 package org.example;
 
@@ -28,19 +29,24 @@ public class Main {
     public static class Solution {
         String solution(String result) {
             String answer = "";
-            result = result.trim().toLowerCase();
+            result = result.toLowerCase();
 
-            StringTokenizer stn = new StringTokenizer(result, " ");
+            StringTokenizer stn = new StringTokenizer(result, " ", true);
             StringBuilder sb = new StringBuilder();
 
             while (stn.hasMoreTokens()) {
                 String token = stn.nextToken();
-                String replaceToken = token.replace(token.substring(0, 1), token.substring(0, 1).toUpperCase());
-                sb.append(replaceToken + " ");
+                if (token.length() == 0) {
+                    sb.append(" ");
+                } else {
+                    sb.append(token.substring(0, 1).toUpperCase() + token.substring(1));
+                }
             }
-            answer = sb.toString().trim();
+            answer = sb.toString();
             return answer;
         }
     }
 
 }
+
+```
